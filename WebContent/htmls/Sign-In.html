@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Can Chen sign in page</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="344156581217-hppuv5kuq6j2pshvfnlro90ve03pb1m7.apps.googleusercontent.com">
+    <meta name="google-signin-scope" content="https://www.googleapis.com/auth/calendar">
+    <script src="function.js"></script>
+  </head>
+
+  <body>
+    <header>
+      <div class="menu"> 
+      </div>
+    </header>
+    <main>
+      <div class="home_wrapper">
+        <img id ="main_img" src="img/1.PNG" alt="main-leaf">
+        <div class="left_block">
+          <p class="title">Sycamore Calendar</p>
+          <div class="s">
+          	<div class="g-signin2" data-onsuccess="onSignIn" onclick="toLoggedIn();"></div>
+          </div>
+        </div>
+      </div>
+      <div class="bottom"> 
+      </div>
+    </main>
+    <script>
+    	function toLoggedIn() {
+    		// Listen for sign-in state changes.
+    	      gapi.auth2.getAuthInstance().isSignedIn.listen(redirect);
+    	      // Handle the initial sign-in state.
+    	      redirect(gapi.auth2.getAuthInstance().isSignedIn.get());
+    	}
+    	function redirect(isSignedIn){
+    		if(isSignedIn){
+            	window.open("logged-in.html","_self");
+            }
+    	}
+    	function onLoad() {
+   	     gapi.load('auth2', function() {
+   	       gapi.auth2.init();
+   	     });
+       } 
+    </script>
+    <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+  </body>
+</html>
